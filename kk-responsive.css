@@ -1,0 +1,116 @@
+/* Konus Konex — responsive layer.
+   Pages are inline-styled (design-component authoring), so media-query
+   overrides need !important to beat the element's own style attribute.
+   NOTE: the runtime re-serializes inline styles with spaces after colons and
+   commas ("grid-template-columns: repeat(auto-fit, minmax(180px, 1fr))"), so
+   every selector below matches that spaced form (unspaced variants kept as a
+   fallback for any non-runtime-rendered markup). */
+
+/* ── Fluid guards: kill horizontal overflow on narrow phones ───────────── */
+@media (max-width: 480px) {
+  /* flex columns declare min-width:300px, which overflows a 320px viewport
+     once page padding is added */
+  #dc-root [style*="min-width: 300px"],
+  #dc-root [style*="min-width: 280px"],
+  #dc-root [style*="min-width: 260px"],
+  #dc-root [style*="min-width:300px"],
+  #dc-root [style*="min-width:280px"],
+  #dc-root [style*="min-width:260px"] {
+    min-width: 0 !important;
+  }
+  #dc-root p, #dc-root a, #dc-root span, #dc-root div,
+  #dc-root h1, #dc-root h2, #dc-root h3 {
+    overflow-wrap: break-word;
+  }
+}
+
+/* ── Two-column form / tile grids collapse to one ──────────────────────── */
+@media (max-width: 620px) {
+  #dc-root [style*="grid-template-columns: 1fr 1fr"],
+  #dc-root [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Program pages: "Ključne primene" single row wraps ─────────────────── */
+@media (max-width: 900px) {
+  #dc-root [style*="grid-auto-flow: column"],
+  #dc-root [style*="grid-auto-flow:column"] {
+    grid-auto-flow: row !important;
+    grid-auto-columns: auto !important;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    overflow-x: visible !important;
+  }
+}
+
+/* ── About: label/value rows stack ─────────────────────────────────────── */
+@media (max-width: 680px) {
+  #dc-root [style*="minmax(160px, 240px)"],
+  #dc-root [style*="minmax(160px,240px)"] {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+    padding: 14px 0 !important;
+  }
+}
+
+/* ── Comfortable touch targets on touch/narrow viewports ───────────────── */
+@media (max-width: 1080px) {
+  #dc-root footer a,
+  #dc-root nav a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  #dc-root [style*="overflow-x: auto"],
+  #dc-root [style*="overflow-x:auto"] {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+}
+
+/* ── Phone: section rhythm and card widths ─────────────────────────────── */
+@media (max-width: 560px) {
+  /* stat strip: 2 across rather than 1-per-row */
+  #dc-root [style*="minmax(190px, 1fr)"],
+  #dc-root [style*="minmax(190px,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  /* program / news / brand cards: full width, no half-cards */
+  #dc-root [style*="minmax(228px, 1fr)"],
+  #dc-root [style*="minmax(280px, 1fr)"],
+  #dc-root [style*="minmax(230px, 1fr)"],
+  #dc-root [style*="minmax(228px,1fr)"],
+  #dc-root [style*="minmax(280px,1fr)"],
+  #dc-root [style*="minmax(230px,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* certificate tiles stay multi-up (short labels) */
+  #dc-root [style*="minmax(240px, 1fr)"],
+  #dc-root [style*="minmax(240px,1fr)"] {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+  }
+  /* primary buttons full width = easier to hit */
+  #dc-root section a[style*="padding: 15px 26px"],
+  #dc-root section a[style*="padding:15px 26px"] {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── Small tablets: hero media not taller than useful ──────────────────── */
+@media (max-width: 900px) {
+  #dc-root [style*="min-height: clamp(320px, 40vw, 560px)"],
+  #dc-root [style*="min-height:clamp(320px,40vw,560px)"] {
+    min-height: 300px !important;
+  }
+}
+
+/* ── Respect reduced-motion preference ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  #dc-root *, #dc-root *::before, #dc-root *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

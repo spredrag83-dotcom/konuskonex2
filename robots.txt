@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# no crawl value in shared runtime files
+Disallow: /support.js
+Disallow: /Header.dc.html
+Disallow: /Footer.dc.html
+
+Sitemap: https://www.konuskonex.com/sitemap.xml

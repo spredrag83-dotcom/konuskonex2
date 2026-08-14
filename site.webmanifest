@@ -1,0 +1,15 @@
+{
+  "name": "Konus Konex d.o.o.",
+  "short_name": "Konus Konex",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F2EEE6",
+  "theme_color": "#17130F",
+  "icons": [
+    {
+      "src": "/assets/konus-logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#F2EEE6;--ink:#17130F;--accent:#2F6B4F;}
+    *{box-sizing:border-box}
+  </style>
+</helmet>
+
+<footer style="background:#0F0C0A;color:rgba(255,255,255,.72)">
+  <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,6vw,80px) clamp(20px,5vw,72px) 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:clamp(32px,4vw,56px);padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.12)">
+      <div style="grid-column:1 / -1;max-width:360px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px"><img src="assets/konus-logo.jpg" alt="Konus Konex" width="42" height="42" decoding="async" style="height:42px;width:42px;border-radius:50%;object-fit:cover;display:block;flex:none"><span style="font:800 20px 'Archivo';letter-spacing:-.02em;color:var(--paper);white-space:nowrap">KONUS KONEX</span></div>
+        <p style="font:400 14px/1.6 'IBM Plex Sans';color:rgba(255,255,255,.6);margin:0 0 16px">{{ t.tagline }}</p>
+        <div style="font:500 12px 'IBM Plex Mono';letter-spacing:.04em;color:rgba(255,255,255,.5);line-height:1.9">Industrijska cesta 7<br>SI-3210 Slovenske Konjice, {{ t.country }}, EU<br>T: +386 3 757 31 00<br>E: info@konuskonex.com</div>
+      </div>
+      <div>
+        <div style="font:500 11px 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px">{{ t.company }}</div>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <a href="o-nama.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.about }}</a>
+          <a href="gde-se-nalazimo.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.where }}</a>
+          <a href="odrzivost.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.sustain }}</a>
+          <a href="karijera.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.careers }}</a>
+        </div>
+      </div>
+      <div>
+        <div style="font:500 11px 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px">{{ t.programs }}</div>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <a href="industrijska-filtracija.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.p1 }}</a>
+          <a href="ciscenje.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.p2 }}</a>
+          <a href="sinteticka-koza.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.p3 }}</a>
+          <a href="transportne-trake.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.p4short }}</a>
+          <a href="laminati.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.p5short }}</a>
+        </div>
+      </div>
+      <div>
+        <div style="font:500 11px 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px">{{ t.info }}</div>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <a href="vesti.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.newsEvents }}</a>
+          <a href="sertifikati.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.certs }}</a>
+          <a href="kontakti.dc.html" style="font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.contact }}</a>
+          <a href="#" style="display:inline-flex;align-items:center;gap:6px;font:400 14px 'IBM Plex Sans';color:rgba(255,255,255,.72)" style-hover="color:var(--accent)">{{ t.shopWord }} <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style="flex:none"><path d="M4.5 2H10v5.5M10 2L5 7M9 6.5V10H2V3h3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.12)">
+      <div style="font:500 11px 'IBM Plex Mono';letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)">{{ t.groupCompanies }}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:26px;align-items:center">
+        <span style="font:700 15px 'Archivo';color:rgba(255,255,255,.82)">FILTECH</span>
+        <span style="font:700 15px 'Archivo';color:rgba(255,255,255,.82)">Vulkan Protektor</span>
+        <span style="font:700 15px 'Archivo';color:rgba(255,255,255,.82)">Konus S</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:22px 0">
+      <div style="font:500 12px 'IBM Plex Mono';letter-spacing:.05em;color:rgba(255,255,255,.5)">© Konus Konex 2025 &nbsp;·&nbsp; Mat. br. 5490227 &nbsp;·&nbsp; PDV 65406664</div>
+      <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center">
+        <a href="pravila-o-privatnosti.dc.html" style="font:500 12px 'IBM Plex Mono';letter-spacing:.05em;color:rgba(255,255,255,.6)" style-hover="color:var(--accent)">{{ t.privacy }}</a>
+        <a href="uslovi-poslovanja.dc.html" style="font:500 12px 'IBM Plex Mono';letter-spacing:.05em;color:rgba(255,255,255,.6)" style-hover="color:var(--accent)">{{ t.terms }}</a>
+        <span style="display:flex;gap:12px;font:500 12px 'IBM Plex Mono';letter-spacing:.08em;color:rgba(255,255,255,.4)">
+          <button onClick="{{ pickSl }}" style="background:none;border:none;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:{{ slColor }}">SLO</button>
+          <button onClick="{{ pickEn }}" style="background:none;border:none;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:{{ enColor }}">ENG</button>
+          <button onClick="{{ pickSr }}" style="background:none;border:none;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:{{ srColor }}">SRB</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 1280, &quot;height&quot;: 420}
+}">
+const KK_DOC_LANG = {sr:'sr-Latn', sl:'sl', en:'en'};
+const KK_FDICT = {
+  sr: { tagline:'Proizvodnja netkanih i tkanih tekstilnih materijala, filtera, transportnih i pogonskih traka. Tradicija od 1894.', country:'Slovenija',
+    company:'Kompanija', about:'O nama', where:'Gde se nalazimo', sustain:'Održivost', careers:'Karijera',
+    programs:'Programi', p1:'Industrijska filtracija', p2:'Čišćenje', p3:'Sintetička koža', p4short:'Transportne trake', p5short:'Podstave i laminati',
+    info:'Informacije', newsEvents:'Vesti i događaji', certs:'Sertifikati', contact:'Kontakti', shopWord:'Trgovina',
+    groupCompanies:'Povezane kompanije', privacy:'Pravila o privatnosti', terms:'Uslovi poslovanja' },
+  sl: { tagline:'Proizvodnja netkanih in tkanih tekstilnih materialov, filtrov, transportnih in pogonskih trakov. Tradicija od 1894.', country:'Slovenija',
+    company:'Podjetje', about:'O nas', where:'Kje smo', sustain:'Trajnost', careers:'Kariera',
+    programs:'Programi', p1:'Industrijska filtracija', p2:'Čiščenje', p3:'Sintetično usnje', p4short:'Transportni trakovi', p5short:'Podloge in laminati',
+    info:'Informacije', newsEvents:'Novice in dogodki', certs:'Certifikati', contact:'Kontakti', shopWord:'Trgovina',
+    groupCompanies:'Povezane družbe', privacy:'Pravila o zasebnosti', terms:'Pogoji poslovanja' },
+  en: { tagline:'Manufacturing of nonwoven and woven textile materials, filters, conveyor and power transmission belts. Since 1894.', country:'Slovenia',
+    company:'Company', about:'About us', where:'Where we are', sustain:'Sustainability', careers:'Careers',
+    programs:'Programs', p1:'Industrial filtration', p2:'Cleaning', p3:'Synthetic leather', p4short:'Conveyor belts', p5short:'Linings & laminates',
+    info:'Information', newsEvents:'News & events', certs:'Certificates', contact:'Contact', shopWord:'Shop',
+    groupCompanies:'Group companies', privacy:'Privacy policy', terms:'Terms of business' }
+};
+class Component extends DCLogic {
+  state = { lang: 'sr' };
+  componentDidMount() {
+    let key = 'sr';
+    try { key = localStorage.getItem('kk-lang') || 'sr'; } catch(e){}
+    if (!KK_FDICT[key]) key = 'sr';
+    this.setState({ lang: key });
+    this._onLang = (e) => { const k = e.detail; if (KK_FDICT[k]) this.setState({ lang: k }); };
+    window.addEventListener('kk-lang', this._onLang);
+  }
+  componentWillUnmount() { window.removeEventListener('kk-lang', this._onLang); }
+  pick(key) {
+    try { localStorage.setItem('kk-lang', key); } catch(e){}
+    if (typeof document !== 'undefined') document.documentElement.lang = KK_DOC_LANG[key] || 'sr-Latn';
+    window.dispatchEvent(new CustomEvent('kk-lang', { detail: key }));
+    this.setState({ lang: key });
+  }
+  renderVals() {
+    const lang = KK_FDICT[this.state.lang] ? this.state.lang : 'sr';
+    const on = '#fff', off = 'rgba(255,255,255,.4)';
+    return {
+      t: KK_FDICT[lang],
+      slColor: lang === 'sl' ? 'var(--accent)' : off,
+      enColor: lang === 'en' ? 'var(--accent)' : off,
+      srColor: lang === 'sr' ? 'var(--accent)' : off,
+      pickSl: () => this.pick('sl'),
+      pickEn: () => this.pick('en'),
+      pickSr: () => this.pick('sr'),
+    };
+  }
+}
+</script>
+</body>
+</html>

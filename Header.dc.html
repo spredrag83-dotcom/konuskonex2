@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#F2EEE6;--card:#FBFAF6;--ink:#17130F;--ink-soft:#57534C;--line:#DAD3C6;--accent:#2F6B4F;--accent-strong:#265741;}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{color:var(--accent-strong)}
+    ::selection{background:var(--accent);color:#fff}
+    img{max-width:100%}
+    @keyframes menuIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    @keyframes drawerIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+    /* burger only below desktop */
+    #kk-burger{display:none}
+    @media (max-width:1080px){
+      #kk-nav{display:none !important}
+      #kk-burger{display:inline-flex !important}
+      #kk-shop{display:none !important}
+    }
+    @media (max-width:560px){
+      #kk-brandname{display:none}
+      #kk-cta{padding:11px 14px !important;font-size:13px !important}
+    }
+  </style>
+</helmet>
+
+<div id="kk-header-spacer" style="height:74px"></div>
+<header id="kk-header" style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(242,238,230,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)">
+  <div style="max-width:1280px;margin:0 auto;padding:8px clamp(16px,5vw,72px);min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:10px 18px;flex-wrap:nowrap">
+    <a href="pocetna.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex:none;min-width:0">
+      <img src="assets/konus-logo.jpg" alt="Konus Konex" width="42" height="42" decoding="async" style="height:42px;width:42px;border-radius:50%;object-fit:cover;display:block;flex:none">
+      <span id="kk-brandname" style="font:800 clamp(16px,2vw,20px) 'Archivo';letter-spacing:-.02em;color:var(--ink);white-space:nowrap">KONUS KONEX</span>
+    </a>
+
+    <nav id="kk-nav" style="display:flex;align-items:center;flex-wrap:nowrap;gap:12px 18px;flex:1 1 auto;justify-content:center;min-width:0;white-space:nowrap">
+      <div style="position:relative;display:flex;align-items:center;height:100%" onMouseEnter="{{ openKompanija }}" onMouseLeave="{{ scheduleClose }}">
+        <button style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;font:600 14px 'IBM Plex Sans';color:var(--ink);cursor:pointer;padding:0;height:100%" style-hover="color:var(--accent)">{{ t.company }} <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="flex:none"><path d="M2.5 4l2.5 2.5L7.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <sc-if value="{{ kompanijaOpen }}">
+          <div onMouseEnter="{{ openKompanija }}" onMouseLeave="{{ scheduleClose }}" style="position:absolute;top:100%;left:-14px;min-width:220px;background:var(--card);border:1px solid var(--line);box-shadow:0 22px 46px -24px rgba(0,0,0,.4);animation:menuIn .16s both;z-index:60">
+            <a href="o-nama.dc.html" style="display:block;padding:13px 16px;font:500 14px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="background:var(--paper);color:var(--accent)">{{ t.about }}</a>
+            <a href="gde-se-nalazimo.dc.html" style="display:block;padding:13px 16px;font:500 14px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="background:var(--paper);color:var(--accent)">{{ t.where }}</a>
+            <a href="odrzivost.dc.html" style="display:block;padding:13px 16px;font:500 14px 'IBM Plex Sans';color:var(--ink)" style-hover="background:var(--paper);color:var(--accent)">{{ t.sustain }}</a>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="position:relative;display:flex;align-items:center;height:100%" onMouseEnter="{{ openProgrami }}" onMouseLeave="{{ scheduleClose }}">
+        <button style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;font:600 14px 'IBM Plex Sans';color:var(--ink);cursor:pointer;padding:0;height:100%" style-hover="color:var(--accent)">{{ t.programs }} <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="flex:none"><path d="M2.5 4l2.5 2.5L7.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <sc-if value="{{ programiOpen }}">
+          <div onMouseEnter="{{ openProgrami }}" onMouseLeave="{{ scheduleClose }}" style="position:absolute;top:100%;left:-14px;min-width:340px;background:var(--card);border:1px solid var(--line);box-shadow:0 22px 46px -24px rgba(0,0,0,.4);animation:menuIn .16s both;z-index:60">
+            <a href="industrijska-filtracija.dc.html" style="display:flex;gap:12px;align-items:baseline;padding:13px 16px;color:var(--ink);border-bottom:1px solid var(--line)" style-hover="background:var(--paper)"><span style="font:500 14px 'IBM Plex Sans'">{{ t.p1 }}</span></a>
+            <a href="ciscenje.dc.html" style="display:flex;gap:12px;align-items:baseline;padding:13px 16px;color:var(--ink);border-bottom:1px solid var(--line)" style-hover="background:var(--paper)"><span style="font:500 14px 'IBM Plex Sans'">{{ t.p2 }}</span></a>
+            <a href="sinteticka-koza.dc.html" style="display:flex;gap:12px;align-items:baseline;padding:13px 16px;color:var(--ink);border-bottom:1px solid var(--line)" style-hover="background:var(--paper)"><span style="font:500 14px 'IBM Plex Sans'">{{ t.p3 }}</span></a>
+            <a href="transportne-trake.dc.html" style="display:flex;gap:12px;align-items:baseline;padding:13px 16px;color:var(--ink);border-bottom:1px solid var(--line)" style-hover="background:var(--paper)"><span style="font:500 14px 'IBM Plex Sans'">{{ t.p4 }}</span></a>
+            <a href="laminati.dc.html" style="display:flex;gap:12px;align-items:baseline;padding:13px 16px;color:var(--ink)" style-hover="background:var(--paper)"><span style="font:500 14px 'IBM Plex Sans'">{{ t.p5 }}</span></a>
+          </div>
+        </sc-if>
+      </div>
+
+      <a href="karijera.dc.html" style="font:600 14px 'IBM Plex Sans';color:var(--ink)" style-hover="color:var(--accent)">{{ t.careers }}</a>
+      <a href="vesti.dc.html" style="font:600 14px 'IBM Plex Sans';color:var(--ink)" style-hover="color:var(--accent)">{{ t.news }}</a>
+      <a href="sertifikati.dc.html" style="font:600 14px 'IBM Plex Sans';color:var(--ink)" style-hover="color:var(--accent)">{{ t.certs }}</a>
+      <a href="kontakti.dc.html" style="font:600 14px 'IBM Plex Sans';color:var(--ink)" style-hover="color:var(--accent)">{{ t.contact }}</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;flex-wrap:nowrap;gap:10px 14px;flex:none;justify-content:flex-end">
+      <a id="kk-shop" href="#" style="display:inline-flex;align-items:center;gap:6px;font:500 12px 'IBM Plex Mono';letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap" style-hover="color:var(--accent)">{{ t.shop }} <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style="flex:none"><path d="M4.5 2H10v5.5M10 2L5 7M9 6.5V10H2V3h3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div style="position:relative;display:flex;align-items:center" onMouseEnter="{{ openLang }}" onMouseLeave="{{ scheduleClose }}">
+        <button onClick="{{ toggleLang }}" aria-label="Jezik" style="display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--line);font:500 12px 'IBM Plex Mono';letter-spacing:.08em;color:var(--ink);cursor:pointer;padding:10px 11px;min-height:44px" style-hover="border-color:var(--ink)">{{ langLabel }} <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="flex:none"><path d="M2.5 4l2.5 2.5L7.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <sc-if value="{{ langOpen }}">
+          <div onMouseEnter="{{ openLang }}" onMouseLeave="{{ scheduleClose }}" style="position:absolute;top:calc(100% + 6px);right:0;min-width:118px;background:var(--card);border:1px solid var(--line);box-shadow:0 22px 46px -24px rgba(0,0,0,.4);animation:menuIn .16s both;z-index:60">
+            <sc-for list="{{ langItems }}" as="l" hint-placeholder-count="3">
+              <button onClick="{{ l.onClick }}" style="display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;border-bottom:1px solid var(--line);padding:13px 14px;min-height:44px;font:500 13px 'IBM Plex Mono';letter-spacing:.08em;color:var(--ink);cursor:pointer;text-align:left" style-hover="background:var(--paper)">{{ l.code }}<sc-if value="{{ l.active }}"><span style="width:6px;height:6px;background:var(--accent);border-radius:50%;flex:none"></span></sc-if></button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+      <a id="kk-cta" href="{{ quoteHref }}" style="display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;font:600 14px 'IBM Plex Sans';padding:12px 20px;min-height:44px;white-space:nowrap;transition:background .18s,transform .18s" style-hover="background:var(--accent-strong);transform:translateY(-1px)">{{ t.cta }}</a>
+      <button id="kk-burger" onClick="{{ toggleMobile }}" aria-label="Meni" style="align-items:center;justify-content:center;width:44px;height:44px;background:none;border:1px solid var(--line);color:var(--ink);cursor:pointer;flex:none;padding:0" style-hover="border-color:var(--ink)">
+        <sc-if value="{{ mobileOpen }}" hint-placeholder-val="{{ false }}">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </sc-if>
+        <sc-if value="{{ mobileClosed }}" hint-placeholder-val="{{ true }}">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </sc-if>
+      </button>
+    </div>
+  </div>
+
+  <sc-if value="{{ mobileOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;top:100%;left:0;right:0;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 24px 48px -28px rgba(0,0,0,.45);animation:drawerIn .18s both;max-height:calc(100vh - 74px);overflow-y:auto;-webkit-overflow-scrolling:touch">
+      <div style="max-width:1280px;margin:0 auto;padding:14px clamp(16px,5vw,72px) 22px;display:flex;flex-direction:column">
+        <div style="font:500 11px 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);padding:12px 0 6px">{{ t.company }}</div>
+        <a onClick="{{ closeMobile }}" href="o-nama.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.about }}</a>
+        <a onClick="{{ closeMobile }}" href="gde-se-nalazimo.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.where }}</a>
+        <a onClick="{{ closeMobile }}" href="odrzivost.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.sustain }}</a>
+
+        <div style="font:500 11px 'IBM Plex Mono';letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);padding:18px 0 6px">{{ t.programs }}</div>
+        <a onClick="{{ closeMobile }}" href="industrijska-filtracija.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.p1 }}</a>
+        <a onClick="{{ closeMobile }}" href="ciscenje.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.p2 }}</a>
+        <a onClick="{{ closeMobile }}" href="sinteticka-koza.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.p3 }}</a>
+        <a onClick="{{ closeMobile }}" href="transportne-trake.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.p4 }}</a>
+        <a onClick="{{ closeMobile }}" href="laminati.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.p5 }}</a>
+
+        <div style="display:flex;flex-direction:column;padding-top:8px">
+          <a onClick="{{ closeMobile }}" href="karijera.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.careers }}</a>
+          <a onClick="{{ closeMobile }}" href="vesti.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.news }}</a>
+          <a onClick="{{ closeMobile }}" href="sertifikati.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.certs }}</a>
+          <a onClick="{{ closeMobile }}" href="kontakti.dc.html" style="display:flex;align-items:center;min-height:48px;font:600 16px 'IBM Plex Sans';color:var(--ink);border-bottom:1px solid var(--line)" style-hover="color:var(--accent)">{{ t.contact }}</a>
+          <a href="#" style="display:inline-flex;align-items:center;gap:7px;min-height:48px;font:500 13px 'IBM Plex Mono';letter-spacing:.08em;color:var(--ink-soft)" style-hover="color:var(--accent)">{{ t.shop }} <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style="flex:none"><path d="M4.5 2H10v5.5M10 2L5 7M9 6.5V10H2V3h3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 1280, &quot;height&quot;: 140},
+  &quot;quoteHref&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;kontakti.dc.html&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Povezave&quot;}
+}">
+const KK_LANGS = [{code:'SLO',key:'sl'},{code:'ENG',key:'en'},{code:'SRB',key:'sr'}];
+const KK_DOC_LANG = {sr:'sr-Latn', sl:'sl', en:'en'};
+const KK_DICT = {
+  sr: { company:'Kompanija', about:'O nama', where:'Gde se nalazimo', sustain:'Održivost', programs:'Programi',
+    p1:'Industrijska filtracija', p2:'Čišćenje', p3:'Sintetička koža', p4:'Transportne trake i prenos snage', p5:'Podstave i tehnički tekstilni laminati',
+    careers:'Karijera', news:'Vesti', certs:'Sertifikati', contact:'Kontakti', shop:'TRGOVINA', cta:'Zatražite ponudu' },
+  sl: { company:'Podjetje', about:'O nas', where:'Kje smo', sustain:'Trajnost', programs:'Programi',
+    p1:'Industrijska filtracija', p2:'Čiščenje', p3:'Sintetično usnje', p4:'Transportni trakovi in prenos moči', p5:'Podloge in tehnični laminati',
+    careers:'Kariera', news:'Novice', certs:'Certifikati', contact:'Kontakti', shop:'TRGOVINA', cta:'Pošljite povpraševanje' },
+  en: { company:'Company', about:'About us', where:'Where we are', sustain:'Sustainability', programs:'Programs',
+    p1:'Industrial filtration', p2:'Cleaning', p3:'Synthetic leather', p4:'Conveyor belts & power transmission', p5:'Linings & technical laminates',
+    careers:'Careers', news:'News', certs:'Certificates', contact:'Contact', shop:'SHOP', cta:'Request a quote' }
+};
+class Component extends DCLogic {
+  state = { menu: null, lang: 'sr', mobile: false };
+  componentDidMount() {
+    let key = 'sr';
+    try { key = localStorage.getItem('kk-lang') || 'sr'; } catch(e){}
+    if (!KK_DICT[key]) key = 'sr';
+    this.setState({ lang: key });
+    if (typeof document !== 'undefined') document.documentElement.lang = KK_DOC_LANG[key] || 'sr-Latn';
+    this._onLang = (e) => { const k = e.detail; if (KK_DICT[k]) this.setState({ lang: k }); };
+    window.addEventListener('kk-lang', this._onLang);
+    this._syncSpacer = () => {
+      const h = document.getElementById('kk-header');
+      const s = document.getElementById('kk-header-spacer');
+      if (h && s) {
+        // measure only the bar row, never the open drawer (it is absolutely positioned)
+        const bar = h.firstElementChild;
+        s.style.height = ((bar ? bar.offsetHeight : h.offsetHeight)) + 'px';
+      }
+    };
+    this._syncSpacer();
+    setTimeout(this._syncSpacer, 60);
+    setTimeout(this._syncSpacer, 400);
+    this._onResize = () => {
+      this._syncSpacer();
+      if (window.innerWidth > 1080 && this.state.mobile) this.setState({ mobile: false });
+    };
+    window.addEventListener('resize', this._onResize);
+  }
+  componentDidUpdate() { if (this._syncSpacer) this._syncSpacer(); }
+  componentWillUnmount() {
+    clearTimeout(this._t);
+    window.removeEventListener('kk-lang', this._onLang);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+  open(m) { clearTimeout(this._t); this.setState({ menu: m }); }
+  scheduleClose() { clearTimeout(this._t); this._t = setTimeout(() => this.setState({ menu: null }), 150); }
+  pick(key) {
+    clearTimeout(this._t);
+    try { localStorage.setItem('kk-lang', key); } catch(e){}
+    if (typeof document !== 'undefined') document.documentElement.lang = KK_DOC_LANG[key] || 'sr-Latn';
+    window.dispatchEvent(new CustomEvent('kk-lang', { detail: key }));
+    this.setState({ lang: key, menu: null, mobile: false });
+  }
+  renderVals() {
+    const lang = KK_DICT[this.state.lang] ? this.state.lang : 'sr';
+    const langItems = KK_LANGS.map(({code,key}) => ({ code, active: key === lang, onClick: () => this.pick(key) }));
+    const label = (KK_LANGS.find(l => l.key === lang) || KK_LANGS[2]).code;
+    return {
+      quoteHref: this.props.quoteHref || 'kontakti.dc.html',
+      kompanijaOpen: this.state.menu === 'kompanija',
+      programiOpen: this.state.menu === 'programi',
+      langOpen: this.state.menu === 'lang',
+      mobileOpen: this.state.mobile,
+      mobileClosed: !this.state.mobile,
+      t: KK_DICT[lang],
+      langLabel: label,
+      langItems,
+      openKompanija: () => this.open('kompanija'),
+      openProgrami: () => this.open('programi'),
+      openLang: () => this.open('lang'),
+      toggleLang: () => this.setState(s => ({ menu: s.menu === 'lang' ? null : 'lang' })),
+      toggleMobile: () => this.setState(s => ({ mobile: !s.mobile, menu: null })),
+      closeMobile: () => this.setState({ mobile: false }),
+      scheduleClose: () => this.scheduleClose(),
+    };
+  }
+}
+</script>
+</body>
+</html>
