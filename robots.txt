@@ -1,8 +1,9 @@
 User-agent: *
 Allow: /
 
-# no crawl value in shared runtime files
+# shared runtime files — no crawl value
 Disallow: /support.js
+Disallow: /kk-i18n.js
 Disallow: /Header.dc.html
 Disallow: /Footer.dc.html
 
