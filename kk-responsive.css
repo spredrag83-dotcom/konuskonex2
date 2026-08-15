@@ -27,10 +27,39 @@
 /* ── Two-column form / tile grids collapse to one ──────────────────────── */
 @media (max-width: 620px) {
   #dc-root [style*="grid-template-columns: 1fr 1fr"],
-  #dc-root [style*="grid-template-columns:1fr 1fr"] {
+  #dc-root [style*="grid-template-columns:1fr 1fr"],
+  /* asymmetric two-column grids (1.15fr 1fr etc.) must collapse too — left as
+     two columns they overflow narrow phones once the longer Serbian strings
+     set the min-content width */
+  #dc-root [style*="grid-template-columns: 1.15fr 1fr"],
+  #dc-root [style*="grid-template-columns:1.15fr 1fr"],
+  #dc-root [style*="grid-template-columns: 1.2fr 1fr"],
+  #dc-root [style*="grid-template-columns:1.2fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
+
+  /* production-proof gallery: 4 tracks are ~85px on a phone, so captions
+     overflow their cell — go 2-up and let the feature tile span the row */
+  #dc-root [style*="grid-template-columns: repeat(4, 1fr)"],
+  #dc-root [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  #dc-root figure[style*="grid-row: span 2"],
+  #dc-root figure[style*="grid-row:span 2"] {
+    grid-row: span 1 !important;
+  }
+  #dc-root figcaption {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
 }
+
+/* ── Grid/flex children may never be sized by their content ─────────────────
+   A grid item's automatic minimum size is min-content, so one long word or a
+   wide control silently widens the whole track past the viewport. */
+#dc-root [style*="display:grid"] > *,
+#dc-root [style*="display: grid"] > * { min-width: 0; }
 
 /* ── Program pages: "Ključne primene" single row wraps ─────────────────── */
 @media (max-width: 900px) {
