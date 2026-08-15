@@ -105,6 +105,26 @@
   }
 }
 
+/* ── Form controls must never dictate track width ──────────────────────────
+   A native <select>'s intrinsic width equals its widest <option>. In a grid/
+   flex cell the item's automatic min-size is that min-content, so a long option
+   label (e.g. Serbian "Transportne i pogonske trake") pushes the whole form
+   wider than a phone viewport and breaks the layout — English options are
+   shorter so it only showed in Serbian. min-width:0 lets the track shrink;
+   the closed select then ellipsis-truncates instead of overflowing. */
+#dc-root form label,
+#dc-root form > div,
+#dc-root form > div > label { min-width: 0; }
+#dc-root select,
+#dc-root input:not([type="checkbox"]):not([type="radio"]),
+#dc-root textarea { min-width: 0; max-width: 100%; }
+#dc-root select {
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 /* ── Respect reduced-motion preference ─────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   #dc-root *, #dc-root *::before, #dc-root *::after {
